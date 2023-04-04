@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/screens/test_screen.dart';
+import 'package:flutter_application/screens/user_details_screen.dart';
 import 'package:flutter_application/screens/users_screen.dart';
 import 'package:flutter_application/user_model.dart';
 import 'api/api_service.dart';
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => const UsersScreen(title: "Flutter Demo Home Page"),
+        "/": (context) => const UsersScreen(title: "Users"),
+        "/user": (context) => const UserDetailScreen(user: null),
+        "/test": (context) => const TestScreen(title: "test"),
       },
     );
   }
