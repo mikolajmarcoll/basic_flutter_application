@@ -10,7 +10,7 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String initials = users![index].username.substring(0, 2).toUpperCase();
+    final String initials = users![index].name.substring(0, 2).toUpperCase();
 
     return Card(
       child: Padding(
@@ -27,7 +27,7 @@ class UserCard extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                Text(users![index].username),
+                Text(users![index].name),
               ],
             ),
             Row(
