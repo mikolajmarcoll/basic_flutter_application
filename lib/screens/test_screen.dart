@@ -1,14 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application/utils/rive.dart';
+import 'package:rive/rive.dart';
+import 'package:flutter_application/constants.dart';
 
-const List<Widget> fruits = <Widget>[Text('Apple'), Text('Banana'), Text('Orange')];
-
-const List<Widget> vegetables = <Widget>[Text('Tomatoes'), Text('Potatoes'), Text('Carrots')];
-
-const List<Widget> icons = <Widget>[
-  Icon(Icons.sunny),
-  Icon(Icons.cloud),
-  Icon(Icons.ac_unit),
-];
+import '../widgets/animated_bar.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key, required this.title});
@@ -20,64 +17,94 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  final List<bool> _selectedFruits = <bool>[true, false, false];
-  bool vertical = false;
+  RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              // ToggleButtons with a single selection.
-              Text('Single-select', style: theme.textTheme.titleSmall),
-              const SizedBox(height: 5),
-              ToggleButtons(
-                direction: vertical ? Axis.vertical : Axis.horizontal,
-                onPressed: (int index) {
-                  setState(() {
-                    // The button that is tapped is set to true, and the others to false.
-                    for (int i = 0; i < _selectedFruits.length; i++) {
-                      _selectedFruits[i] = i == index;
-                    }
-                  });
-                },
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                selectedBorderColor: Colors.red[700],
-                selectedColor: Colors.white,
-                fillColor: Colors.red[200],
-                color: Colors.red[400],
-                constraints: const BoxConstraints(
-                  minHeight: 40.0,
-                  minWidth: 80.0,
-                ),
-                isSelected: _selectedFruits,
-                children: fruits,
-              ),
-              const SizedBox(height: 20),
-              // ToggleButtons with a multiple selection.
-              const SizedBox(height: 20),
-              // ToggleButtons with icons only.
+        child: Text("test"),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(12),
+          margin: EdgeInsets.symmetric(horizontal: 64, vertical: 10),
+          decoration: BoxDecoration(
+              color: backgroundColor2.withOpacity(0.8), borderRadius: BorderRadius.all(Radius.circular(24))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ...List.generate(
+                  bottomNavs.length,
+                  (index) => GestureDetector(
+                        onTap: () {
+                          if (bottomNavs[index] != selectedBottomNav) {
+                            setState(() {
+                              selectedBottomNav = bottomNavs[index];
+                            });
+                          }
+
+                          final input = bottomNavs[index].input;
+                          if (input != null) {
+                            input.change(true);
+
+                            Future.delayed(Duration(seconds: 1), () {
+                              input.change(false);
+                            });
+                          }
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedBar(isActive: bottomNavs[index] == selectedBottomNav),
+                            SizedBox(
+                              height: 36,
+                              width: 36,
+                              child: Opacity(
+                                opacity: bottomNavs[index] == selectedBottomNav ? 1 : 0.5,
+                                child: RiveAnimation.asset(
+                                  // scr is same for all
+                                  bottomNavs.first.src,
+                                  artboard: bottomNavs[index].artboard,
+                                  onInit: (artboard) {
+                                    StateMachineController controller = RiveUtils.getRiveController(artboard,
+                                        stateMachineName: bottomNavs[index].stateMachineName);
+
+                                    print("index");
+                                    print(index);
+                                    bottomNavs[index].input = controller.findSMI("active") as SMIBool;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ))
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          setState(() {
-            // When the button is pressed, ToggleButtons direction is changed.
-            vertical = !vertical;
-          });
-        },
-        icon: const Icon(Icons.screen_rotation_outlined),
-        label: Text(vertical ? 'Horizontal' : 'Vertical'),
-      ),
     );
   }
 }
+
+class RiveAsset {
+  final String artboard;
+  final String stateMachineName;
+  final String title;
+  final String src;
+  late final SMIBool? input;
+
+  RiveAsset(this.src, {required this.artboard, required this.stateMachineName, required this.title, this.input});
+
+  set setInput(SMIBool status) {
+    input = status;
+  }
+}
+
+List<RiveAsset> bottomNavs = [
+  RiveAsset("assets/icons.riv", artboard: "USER", stateMachineName: "USER_Interactivity", title: "User"),
+  RiveAsset("assets/icons.riv", artboard: "CHAT", stateMachineName: "CHAT_Interactivity", title: "Chat"),
+  RiveAsset("assets/icons.riv", artboard: "BELL", stateMachineName: "BELL_Interactivity", title: "Notifications"),
+];

@@ -25,7 +25,7 @@ class UsersScreen extends StatefulWidget {
 class _UsersScreenState extends State<UsersScreen> {
   late List<UserModel>? _users = [];
   final List<bool> _selectedView = <bool>[true, false]; // list, grid
-  late final _isLoading;
+  bool vertical = false;
 
   @override
   void initState() {
@@ -139,6 +139,17 @@ class _UsersScreenState extends State<UsersScreen> {
             if (_selectedView[1]) _usersGrid(),
           ],
         ),
+      ),
+      // TODO: maybe this is better that toggle
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {
+            // When the button is pressed, ToggleButtons direction is changed.
+            vertical = !vertical;
+          });
+        },
+        icon: const Icon(Icons.screen_rotation_outlined),
+        label: Text(vertical ? 'Horizontal' : 'Vertical'),
       ),
     );
   }
