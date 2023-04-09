@@ -15,6 +15,20 @@ class _GalleryScreenState extends State<GalleryScreen> {
   late List<GalleryModel>? _gallery = [];
   final int MAX_IMAGES = 10;
 
+// TODO: download other images
+  final List<String> imagesList = [
+    "assets/images/nature.jpg",
+    "assets/images/lake.jpg",
+    "assets/images/game.jpg",
+    "assets/images/vector.jpg",
+    "assets/images/crypto.jpg",
+    "assets/images/nature.jpg",
+    "assets/images/nature.jpg",
+    "assets/images/nature.jpg",
+    "assets/images/nature.jpg",
+    "assets/images/nature.jpg",
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -35,28 +49,42 @@ class _GalleryScreenState extends State<GalleryScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _gallery == null || _gallery!.isEmpty
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : SingleChildScrollView(
-              child: SizedBox(
-                // TODO: handle height
-                height: 500,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  shrinkWrap: true,
-                  itemCount: MAX_IMAGES,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: Image.network(_gallery![index].thumbnailUrl),
-                    );
-                  },
-                ),
+      body: Column(
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: const Text(
+              "All images",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+          _gallery == null || _gallery!.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    // TODO: handle height
+                    height: 480,
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: MAX_IMAGES,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          child: Image.asset(imagesList[index]),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+        ],
+      ),
     );
   }
 }

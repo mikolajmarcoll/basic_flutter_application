@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       routes: {
-        "/users": (context) => UsersScreen(title: "Users"),
+        "/users": (context) => const UsersScreen(title: "Users"),
         "/user": (context) => const UserDetailScreen(user: null),
         "/test": (context) => const TestScreen(title: "test"),
-        "/gallery": (context) => GalleryScreen(title: "Users"),
+        "/gallery": (context) => const GalleryScreen(title: "Gallery"),
       },
     );
   }
