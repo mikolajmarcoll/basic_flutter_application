@@ -1,10 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application/utils/rive.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter_application/constants.dart';
 
+// TODO: absolute imports
+import '../models/rive_asset.dart';
 import '../widgets/animated_bar.dart';
 
 class TestScreen extends StatefulWidget {
@@ -22,6 +22,8 @@ class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Text("test"),
@@ -71,8 +73,6 @@ class _TestScreenState extends State<TestScreen> {
                                     StateMachineController controller = RiveUtils.getRiveController(artboard,
                                         stateMachineName: bottomNavs[index].stateMachineName);
 
-                                    print("index");
-                                    print(index);
                                     bottomNavs[index].input = controller.findSMI("active") as SMIBool;
                                   },
                                 ),
@@ -88,23 +88,3 @@ class _TestScreenState extends State<TestScreen> {
     );
   }
 }
-
-class RiveAsset {
-  final String artboard;
-  final String stateMachineName;
-  final String title;
-  final String src;
-  late final SMIBool? input;
-
-  RiveAsset(this.src, {required this.artboard, required this.stateMachineName, required this.title, this.input});
-
-  set setInput(SMIBool status) {
-    input = status;
-  }
-}
-
-List<RiveAsset> bottomNavs = [
-  RiveAsset("assets/icons.riv", artboard: "USER", stateMachineName: "USER_Interactivity", title: "User"),
-  RiveAsset("assets/icons.riv", artboard: "CHAT", stateMachineName: "CHAT_Interactivity", title: "Chat"),
-  RiveAsset("assets/icons.riv", artboard: "BELL", stateMachineName: "BELL_Interactivity", title: "Notifications"),
-];

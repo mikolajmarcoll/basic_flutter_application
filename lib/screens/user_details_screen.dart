@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/widgets/text_field.dart';
 
-import '../user_model.dart';
+import '../models/user_model.dart';
 
 class UserDetailScreen extends StatefulWidget {
   const UserDetailScreen({Key? key, required this.user}) : super(key: key);
@@ -29,6 +29,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
       appBar: AppBar(
         title: Text(user["name"]),
       ),
+      bottomNavigationBar: null,
       body: Column(
         children: [
           Padding(
@@ -39,6 +40,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
               child: Text(initials!,style: const TextStyle(fontSize: 30),),
             ),
           ),
+          // TODO: create an array
           CustomTextField(icon: Icons.verified_rounded, text: user!["name"]),
           CustomTextField(icon: Icons.mail, text: user["email"]),
           CustomTextField(icon: Icons.location_city, text: user["address"]["city"]),

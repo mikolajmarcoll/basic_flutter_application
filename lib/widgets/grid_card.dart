@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/screens/user_details_screen.dart';
 
-import '../user_model.dart';
+import '../models/user_model.dart';
 
 class GridCard extends StatelessWidget {
   const GridCard({Key? key, required this.index, required this.users}) : super(key: key);

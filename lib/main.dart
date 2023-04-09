@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/screens/gallery_screen.dart';
+import 'package:flutter_application/screens/home_screen.dart';
 import 'package:flutter_application/screens/test_screen.dart';
 import 'package:flutter_application/screens/user_details_screen.dart';
 import 'package:flutter_application/screens/users_screen.dart';
-import 'package:flutter_application/user_model.dart';
+import 'package:flutter_application/models/user_model.dart';
 import 'api/api_service.dart';
 
 void main() {
@@ -20,11 +22,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: "/",
+      home: const HomeScreen(),
       routes: {
-        "/": (context) => const UsersScreen(title: "Users"),
+        "/users": (context) => UsersScreen(title: "Users"),
         "/user": (context) => const UserDetailScreen(user: null),
         "/test": (context) => const TestScreen(title: "test"),
+        "/gallery": (context) => GalleryScreen(title: "Users"),
       },
     );
   }

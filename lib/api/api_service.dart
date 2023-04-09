@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:flutter_application/user_model.dart';
+import 'package:flutter_application/models/user_model.dart';
 import 'package:flutter_application/api/api.dart';
 
 class ApiService {

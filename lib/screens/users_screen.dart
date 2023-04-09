@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/models/rive_asset.dart';
 
 import 'package:flutter_application/screens/test_screen.dart';
-import 'package:flutter_application/user_model.dart';
+import 'package:flutter_application/models/user_model.dart';
 import 'package:flutter_application/api/api_service.dart';
+import 'package:flutter_application/utils/routes.dart';
 import 'package:flutter_application/widgets/toggle_view.dart';
 import 'package:flutter_application/widgets/user_card.dart';
 
+import '../widgets/navigation_bar.dart';
 import '../widgets/grid_card.dart';
 
 const List<Widget> fruits = <Widget>[
@@ -14,9 +17,10 @@ const List<Widget> fruits = <Widget>[
 ];
 
 class UsersScreen extends StatefulWidget {
-  const UsersScreen({super.key, required this.title});
+  UsersScreen({super.key, required this.title});
 
   final String title; // TODO: remove it
+  final RiveAsset? current = getCurrentNavigationAsset(Routes.usersPath);
 
   @override
   State<UsersScreen> createState() => _UsersScreenState();
@@ -151,6 +155,9 @@ class _UsersScreenState extends State<UsersScreen> {
         icon: const Icon(Icons.screen_rotation_outlined),
         label: Text(vertical ? 'Horizontal' : 'Vertical'),
       ),
+      // bottomNavigationBar: CustomNavigationBar(
+      //   selectedBottomNav: widget.current,
+      // ),
     );
   }
 }
