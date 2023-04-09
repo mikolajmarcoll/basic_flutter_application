@@ -4,13 +4,13 @@ import 'package:flutter_application/screens/user_details_screen.dart';
 import '../models/user_model.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({Key? key, required this.index, required this.users}) : super(key: key);
-  final int index;
-  final List<UserModel>? users;
+  const UserCard({Key? key, required int index, required List<UserModel>? users}) : _index = index, _users = users, super(key: key);
+  final int _index;
+  final List<UserModel>? _users;
 
   @override
   Widget build(BuildContext context) {
-    final String initials = users![index].name.substring(0, 2).toUpperCase();
+    final String initials = _users![_index].name.substring(0, 2).toUpperCase();
 
     return Card(
       child: Padding(
@@ -27,7 +27,7 @@ class UserCard extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                Text(users![index].name),
+                Text(_users![_index].name),
               ],
             ),
             Row(
@@ -39,7 +39,7 @@ class UserCard extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => UserDetailScreen(
-                          user: users![index],
+                          user: _users![_index],
                         ),
                       ),
                     );

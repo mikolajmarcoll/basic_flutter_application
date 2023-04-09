@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
 class ToggleView extends StatelessWidget {
-  const ToggleView({Key? key, required this.onPressed, required this.children, required this.isSelected})
-      : super(key: key);
-  final Function onPressed;
-  final List<Widget> children;
-  final List<bool> isSelected;
+  const ToggleView({Key? key, required Function onPressed, required List<Widget> children, required List<bool> isSelected})
+      : _isSelected = isSelected, _children = children, _onPressed = onPressed, super(key: key);
+  final Function _onPressed;
+  final List<Widget> _children;
+  final List<bool> _isSelected;
 
   @override
   Widget build(BuildContext context) {
     return ToggleButtons(
       direction: Axis.horizontal,
-      onPressed: (index) => onPressed(index),
+      onPressed: (index) => _onPressed(index),
       borderRadius: const BorderRadius.all(Radius.circular(8)),
-      selectedBorderColor: Colors.red[700],
+      selectedBorderColor: Colors.blue[700],
       selectedColor: Colors.white,
-      fillColor: Colors.red[200],
-      color: Colors.red[400],
+      fillColor: Colors.blue[200],
+      color: Colors.blue[400],
       constraints: const BoxConstraints(
-        minHeight: 40.0,
-        minWidth: 80.0,
+        minHeight: 30.0,
+        minWidth: 60.0,
       ),
-      isSelected: isSelected,
-      children: children,
+      isSelected: _isSelected,
+      children: _children,
     );
   }
 }

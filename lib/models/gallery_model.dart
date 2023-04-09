@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-List<GalleryModal> galleryModelFromJson(String str) =>
-    List<GalleryModal>.from(json.decode(str).map((x) => GalleryModal.fromJson(x)));
+List<GalleryModel> galleryModelFromJson(String str) =>
+    List<GalleryModel>.from(json.decode(str).map((x) => GalleryModel.fromJson(x)));
 
-String galleryModelToJson(List<GalleryModal> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String galleryModelToJson(List<GalleryModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class GalleryModal {
-  GalleryModal({
+class GalleryModel {
+  GalleryModel({
     required this.id,
     required this.albumId,
     required this.title,
@@ -20,7 +20,7 @@ class GalleryModal {
   String url;
   String thumbnailUrl;
 
-  factory GalleryModal.fromJson(Map<String, dynamic> json) => GalleryModal(
+  factory GalleryModel.fromJson(Map<String, dynamic> json) => GalleryModel(
         id: json["id"],
         albumId: json["albumId"],
         title: json["title"],

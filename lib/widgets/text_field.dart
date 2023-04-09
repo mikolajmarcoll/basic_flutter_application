@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({Key? key, required this.icon, required this.text}) : super(key: key);
+  const CustomTextField({Key? key, required IconData icon, required String? text}) : _text = text, _icon = icon, super(key: key);
 
-  final IconData icon;
-  final String? text;
+  final IconData _icon;
+  final String? _text;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         enabled: false,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(_icon),
           border: const UnderlineInputBorder(),
-          hintText: text,
+          hintText: _text,
         ),
       ),
     );

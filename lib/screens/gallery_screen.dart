@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/models/user_model.dart';
+import 'package:flutter_application/models/gallery_model.dart';
 import 'package:flutter_application/api/api_service.dart';
 
 class GalleryScreen extends StatefulWidget {
@@ -12,7 +12,8 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
-  late List<UserModel>? _gallery = [];
+  late List<GalleryModel>? _gallery = [];
+  final int MAX_IMAGES = 10;
 
   @override
   void initState() {
@@ -21,7 +22,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   void _fetchImages() async {
-    final images = (await ApiService().getUsers())!;
+    final images = (await ApiService().getImages())!;
 
     setState(() {
       _gallery = images;
@@ -34,17 +35,28 @@ class _GalleryScreenState extends State<GalleryScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [Text("gallery")],
+      body: _gallery == null || _gallery!.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: SizedBox(
+                // TODO: handle height
+                height: 500,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  shrinkWrap: true,
+                  itemCount: MAX_IMAGES,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: Image.network(_gallery![index].thumbnailUrl),
+                    );
+                  },
+                ),
+              ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

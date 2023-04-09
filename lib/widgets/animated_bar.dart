@@ -15,7 +15,6 @@ class AnimatedBar extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 2),
       height: 4,
       width: isActive ? 20 : 0,
-      // TODO: add to contstants --> this color
       decoration: const BoxDecoration(color: Color(0xFF81B4FF), borderRadius: BorderRadius.all(Radius.circular(12))),
     );
   }

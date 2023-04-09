@@ -18,12 +18,19 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     super.initState();
   }
 
-  // I/flutter ( 2021): {id: 1, name: Leanne Graham, username: Bret, email: Sincere@april.biz, phone: 1-770-736-8031 x56442, website: hildegard.org, company: {name: Romaguera-Crona, catchPhrase: Multi-layered client-server neural-net, bs: harness real-time e-markets}}
-
   @override
   Widget build(BuildContext context) {
     final user = widget.user?.toJson();
     final initials = user!["name"]?.toString().substring(0, 2).toUpperCase();
+
+    List<Map<String, dynamic>> fieldsList = [
+      {"icon": Icons.verified_rounded, "text": user["name"]},
+      {"icon": Icons.mail, "text": user["email"]},
+      {"icon": Icons.location_city, "text": user["address"]["city"]},
+      {"icon": Icons.phone, "text": user["phone"]},
+      {"icon": Icons.web, "text": user["website"]},
+      {"icon": Icons.view_compact_alt_sharp, "text": user["company"]["name"]}
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -37,16 +44,14 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
             child: CircleAvatar(
               radius: 40,
               backgroundColor: Colors.blueAccent,
-              child: Text(initials!,style: const TextStyle(fontSize: 30),),
+              child: Text(
+                initials!,
+                style: const TextStyle(fontSize: 30),
+              ),
             ),
           ),
-          // TODO: create an array
-          CustomTextField(icon: Icons.verified_rounded, text: user!["name"]),
-          CustomTextField(icon: Icons.mail, text: user["email"]),
-          CustomTextField(icon: Icons.location_city, text: user["address"]["city"]),
-          CustomTextField(icon: Icons.phone, text: user["phone"]),
-          CustomTextField(icon: Icons.web, text: user["website"]),
-          CustomTextField(icon: Icons.view_compact_alt_sharp, text: user["company"]["name"])
+          ...List.generate(fieldsList.length,
+              (index) => CustomTextField(icon: fieldsList[index]["icon"], text: fieldsList[index]["text"])),
         ],
       ),
     );

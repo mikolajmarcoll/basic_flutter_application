@@ -4,7 +4,6 @@ import 'package:flutter_application/screens/gallery_screen.dart';
 import 'package:flutter_application/screens/users_screen.dart';
 import 'package:flutter_application/widgets/navigation_bar.dart';
 
-// TODO: change to home screen
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
