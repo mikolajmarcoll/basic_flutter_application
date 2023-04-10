@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/models/gallery_model.dart';
 import 'package:flutter_application/api/api_service.dart';
 
+import '../utils/images.dart';
+
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key, required this.title});
 
@@ -19,8 +21,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   final List<String> imagesList = [
     "assets/images/nature.jpg",
     "assets/images/lake.jpg",
-    // "assets/images/game.jpg",
-    "assets/images/nature.jpg",
+    "assets/images/sports.jpg",
     "assets/images/vector.jpg",
     "assets/images/crypto.jpg",
     "assets/images/runner.jpg",
@@ -93,7 +94,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   style: const TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Image.asset(imagesList[index]),
+                              Image.asset(Images.list[index]),
                             ],
                           ),
                         );
