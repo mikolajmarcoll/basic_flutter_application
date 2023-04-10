@@ -100,16 +100,16 @@ class _UsersScreenState extends State<UsersScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
-              // TODO: remove it later!
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const TestScreen(title: "test")),
-                );
-              },
-              child: const Text("go to test "),
-            ),
+            // ElevatedButton(
+            //   // TODO: remove it later!
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => const TestScreen(title: "test")),
+            //     );
+            //   },
+            //   child: const Text("go to test "),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -132,17 +132,17 @@ class _UsersScreenState extends State<UsersScreen> {
           ],
         ),
       ),
-      // TODO: maybe this is better that toggle
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          setState(() {
-            // When the button is pressed, ToggleButtons direction is changed.
-            vertical = !vertical;
-          });
-        },
-        icon: const Icon(Icons.screen_rotation_outlined),
-        label: Text(vertical ? 'Horizontal' : 'Vertical'),
-      ),
+      // // TODO: maybe this is better that toggle
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     setState(() {
+      //       // When the button is pressed, ToggleButtons direction is changed.
+      //       vertical = !vertical;
+      //     });
+      //   },
+      //   icon: const Icon(Icons.screen_rotation_outlined),
+      //   label: Text(vertical ? 'Horizontal' : 'Vertical'),
+      // ),
     );
   }
 }

@@ -19,10 +19,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
   final List<String> imagesList = [
     "assets/images/nature.jpg",
     "assets/images/lake.jpg",
-    "assets/images/game.jpg",
+    // "assets/images/game.jpg",
+    "assets/images/nature.jpg",
     "assets/images/vector.jpg",
     "assets/images/crypto.jpg",
-    "assets/images/nature.jpg",
+    "assets/images/runner.jpg",
     "assets/images/nature.jpg",
     "assets/images/nature.jpg",
     "assets/images/nature.jpg",
@@ -51,13 +52,16 @@ class _GalleryScreenState extends State<GalleryScreen> {
       ),
       body: Column(
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: const Text(
-              "All images",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+          const Padding(
+            padding: EdgeInsets.only(top: 10, left: 10),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "All images",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -68,7 +72,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               : SingleChildScrollView(
                   child: SizedBox(
                     // TODO: handle height
-                    height: 480,
+                    height: 470,
                     child: GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -76,8 +80,22 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       shrinkWrap: true,
                       itemCount: MAX_IMAGES,
                       itemBuilder: (context, index) {
-                        return Container(
-                          child: Image.asset(imagesList[index]),
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  _gallery![index].title,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Image.asset(imagesList[index]),
+                            ],
+                          ),
                         );
                       },
                     ),

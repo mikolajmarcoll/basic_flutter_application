@@ -66,6 +66,7 @@ flutter:
     - assets/images/game.jpg
     - assets/images/vector.jpg
     - assets/images/crypto.jpg
+    - assets/images/runner.jpg
     - assets/icons.riv
   # To add assets to your application, add an assets section, like this:
   # assets:
