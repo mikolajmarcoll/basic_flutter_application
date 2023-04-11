@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/user_details_screen.dart';
 
-import '../models/user_model.dart';
+import 'package:flutter_application/screens/user_details_screen.dart';
+import 'package:flutter_application/models/user_model.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({Key? key, required int index, required List<UserModel>? users}) : _index = index, _users = users, super(key: key);
+  const UserCard({Key? key, required int index, required List<UserModel>? users})
+      : _index = index,
+        _users = users,
+        super(key: key);
   final int _index;
   final List<UserModel>? _users;
 

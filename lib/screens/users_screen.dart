@@ -1,17 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application/models/rive_asset.dart';
 
-import 'package:flutter_application/screens/test_screen.dart';
 import 'package:flutter_application/models/user_model.dart';
 import 'package:flutter_application/api/api_service.dart';
-import 'package:flutter_application/utils/routes.dart';
 import 'package:flutter_application/widgets/toggle_view.dart';
 import 'package:flutter_application/widgets/user_card.dart';
-
-// TODO: absolute import
-import '../widgets/grid_card.dart';
+import 'package:flutter_application/widgets/grid_card.dart';
 
 const List<Widget> fruits = <Widget>[
   Text('List'),
@@ -21,7 +14,7 @@ const List<Widget> fruits = <Widget>[
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key, required this.title});
 
-  final String title; // TODO: remove it
+  final String title;
 
   @override
   State<UsersScreen> createState() => _UsersScreenState();
@@ -55,7 +48,6 @@ class _UsersScreenState extends State<UsersScreen> {
     }
 
     return SizedBox(
-      // TODO: handle height
       height: 450,
       child: listView
           ? ListView.builder(
@@ -98,16 +90,6 @@ class _UsersScreenState extends State<UsersScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // ElevatedButton(
-            //   // TODO: remove it later! and also test screen
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => const TestScreen(title: "test")),
-            //     );
-            //   },
-            //   child: const Text("go to test "),
-            // ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(

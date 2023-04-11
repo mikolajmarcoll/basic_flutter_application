@@ -68,10 +68,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const ListTile(
-                                    leading: Icon(Icons.album),
-                                    title: Text('The Enchanted Nightingale'),
-                                    subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+                                  ListTile(
+                                    leading: const Icon(Icons.comment),
+                                    title: Text(_comments![index].name),
+                                    subtitle: Text(_comments![index].body),
                                   ),
                                 ],
                               ),

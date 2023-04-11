@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/widgets/text_field.dart';
 
-import '../models/user_model.dart';
+import 'package:flutter_application/widgets/text_field.dart';
+import 'package:flutter_application/models/user_model.dart';
 
 class UserDetailScreen extends StatefulWidget {
   const UserDetailScreen({Key? key, required this.user}) : super(key: key);
@@ -50,8 +50,13 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
               ),
             ),
           ),
-          ...List.generate(fieldsList.length,
-              (index) => CustomTextField(icon: fieldsList[index]["icon"], text: fieldsList[index]["text"])),
+          ...List.generate(
+            fieldsList.length,
+            (index) => CustomTextField(
+              icon: fieldsList[index]["icon"],
+              text: fieldsList[index]["text"],
+            ),
+          ),
         ],
       ),
     );

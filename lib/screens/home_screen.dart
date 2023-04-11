@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // TODO: add underscore to every variable
   int _currentPageIndex = 0;
 
   _handleChange(int index) {

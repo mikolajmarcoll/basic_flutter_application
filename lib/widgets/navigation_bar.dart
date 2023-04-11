@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/gallery_screen.dart';
 import 'package:rive/rive.dart';
 
-import '../constants.dart';
-import '../models/rive_asset.dart';
-import '../utils/rive.dart';
-import 'animated_bar.dart';
+import 'package:flutter_application/constants.dart';
+import 'package:flutter_application/models/rive_asset.dart';
+import 'package:flutter_application/utils/rive.dart';
+import 'package:flutter_application/widgets/animated_bar.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key, required this.selectedBottomNav, required this.handleChange}) : super(key: key);
