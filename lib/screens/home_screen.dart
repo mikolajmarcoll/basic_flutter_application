@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/models/rive_asset.dart';
+import 'package:flutter_application/screens/comments_screen.dart';
 import 'package:flutter_application/screens/gallery_screen.dart';
 import 'package:flutter_application/screens/users_screen.dart';
 import 'package:flutter_application/widgets/navigation_bar.dart';
@@ -22,13 +23,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> screens = [
-    UsersScreen(title: "users"),
-    Container(
-      color: Colors.green,
-      alignment: Alignment.center,
-      child: const Text('Page 2'),
+    const UsersScreen(
+      title: "Users",
     ),
-    GalleryScreen(title: "gallery"),
+    const CommentsScreen(
+      title: "Comments",
+    ),
+    const GalleryScreen(
+      title: "Gallery",
+    ),
   ];
 
   @override

@@ -30,7 +30,6 @@ class UsersScreen extends StatefulWidget {
 class _UsersScreenState extends State<UsersScreen> {
   late List<UserModel>? _users = [];
   final List<bool> _selectedView = <bool>[true, false]; // list, grid
-  bool vertical = false;
   bool listView = false;
 
   @override
@@ -57,7 +56,7 @@ class _UsersScreenState extends State<UsersScreen> {
 
     return SizedBox(
       // TODO: handle height
-      height: 500,
+      height: 450,
       child: listView
           ? ListView.builder(
               shrinkWrap: true,
@@ -95,13 +94,12 @@ class _UsersScreenState extends State<UsersScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // ElevatedButton(
-            //   // TODO: remove it later!
+            //   // TODO: remove it later! and also test screen
             //   onPressed: () {
             //     Navigator.push(
             //       context,
@@ -110,39 +108,31 @@ class _UsersScreenState extends State<UsersScreen> {
             //   },
             //   child: const Text("go to test "),
             // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Text(
-                  "All users",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    "All users",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                ToggleView(
-                  onPressed: (index) => handleToggle(index),
-                  isSelected: _selectedView,
-                  children: fruits,
-                ),
-              ],
+                  ToggleView(
+                    onPressed: (index) => handleToggle(index),
+                    isSelected: _selectedView,
+                    children: fruits,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             _usersView(),
           ],
         ),
       ),
-      // // TODO: maybe this is better that toggle
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     setState(() {
-      //       // When the button is pressed, ToggleButtons direction is changed.
-      //       vertical = !vertical;
-      //     });
-      //   },
-      //   icon: const Icon(Icons.screen_rotation_outlined),
-      //   label: Text(vertical ? 'Horizontal' : 'Vertical'),
-      // ),
     );
   }
 }

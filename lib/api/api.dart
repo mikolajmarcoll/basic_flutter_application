@@ -3,4 +3,5 @@ class Api {
 
   static String usersEndpoint = "/users";
   static String imagesEndpoint = "/photos";
+  static String commentsEndpoint = "/comments";
 }

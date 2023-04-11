@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_application/models/comments_model.dart';
 import 'package:flutter_application/models/gallery_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application/models/user_model.dart';
@@ -24,10 +25,25 @@ class ApiService {
     try {
       final url = Uri.parse(Api.baseUrl + Api.imagesEndpoint);
       final response = await http.get(url);
-      print(response);
+
       if (response.statusCode == 200) {
         List<GalleryModel> images = galleryModelFromJson(response.body);
         return images;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<List<CommentModel>?> getComments() async {
+    try {
+      final url = Uri.parse(Api.baseUrl + Api.commentsEndpoint);
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        List<CommentModel> comments = commentModelFromJson(response.body);
+        return comments;
       }
     } catch (e) {
       log(e.toString());
